@@ -4,8 +4,7 @@ import $ from 'jquery';
 import { config } from './configs';
 import { create } from './actions';
 
-const DELAY = 1000;
-
+const DELAY = 500;
 
 export const fetchStreams = (query) => {
   const url = `https://api.twitch.tv/kraken/search/channels?q=${query}&limit=30&client_id=${config.client_id}&callback=?`;
