@@ -1,5 +1,180 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #E8DB8D;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2em 0;
+}
+
+.header {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+}
+
+.nav {
+  margin-bottom: 10px;
+}
+
+.nav-items {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  list-style: none;
+  color: white;
+  background-color: #292326;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 30px;
+  border-radius: 2em;
+}
+
+.nav-item {
+  position: relative;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  cursor: pointer;
+  padding: 20px;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+  transition: 0.2s;
+  flex: 1 0 auto;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+.nav-item--active::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-top: 20px solid #292326;
+  transform: translate3d(-50%, 0, 0);
+}
+
+.nav-item:first-child {
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+}
+
+.nav-item:last-child {
+  border-top-right-radius: 2em;
+  border-bottom-right-radius: 2em;
+}
+
+.nav-item:hover {
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+  background: #56523c;
+}
+
+.nav-item:active {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.search {
+  position: relative;
+}
+
+.icon-search {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translate3d(0, -50%, 0);
+  z-index: 1000;
+  transition: 0.3s;
+}
+
+.icon-search:hover {
+  opacity: 0.7;
+}
+
+.search-input {
+  padding: 5px 10px 5px 2em;
+  width: 100%;
+  font-size: 2em;
+  border-radius: 0.5em;
+}
+
+.channels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.channel-link {
+  padding: 10px;
+  text-decoration: none;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-bottom: 1px solid lightgrey;
+  cursor: pointer;
+}
+
+.channel-description {
+  text-align: center;
+}
+
+.channel-avatar {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  background: grey;
+  border-radius: 50%;
+}
+
+.channel-status {
+  flex: 0 0 50px;
+  text-align: center;
+}
+
+.channels-viewers {
+  padding: 2px;
+  font-size: 12px;
+  color: lightgrey;
+}
+
+.fa-check {
+  color: green;
+}
+
+.fa-ban {
+  color: red;
+}
+
+.fa-eye {
+  color: grey;
+  margin: 0 3px;
+}
+
+.stream-info {
+  color: black;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+.channel-game {
+  display: block;
+  font-size: 12px;
+}
+
+.channel-exact-match {
+  background-color: #8BE866;
 }

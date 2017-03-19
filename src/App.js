@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
+
+import { Header } from './Header';
+import Main from './Main';
 
 class App extends Component {
+
   render() {
     return (
-      <div className="App">
-       
+      <div className="app">
+        <Header />
+        <Main />
       </div>
     );
   }
 }
 
-export default App;
+export default connect()(App);
