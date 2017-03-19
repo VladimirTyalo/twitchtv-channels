@@ -1,6 +1,6 @@
 # Twitch-tv Channels app (React, Redux, redux-thunk)
 
-## <a href="http://google.com" target="_blank">Live Demo Preview</a>
+## <a href="https://vladimirtyalo.github.io/twitchtv-channels/" target="_blank">Live Demo Preview</a>
 
 ## About 
  - This application finds Twitch channels witch might be currently streaming or not.
