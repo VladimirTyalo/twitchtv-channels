@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Search from './Search';
 import Channels from './Channels';
-import {create} from './actions';
+import { create } from './actions';
 
 class Main extends Component {
 
@@ -34,7 +34,10 @@ class Main extends Component {
           </ul>
           <Search />
         </nav>
-        <Channels channels={this.props.filteredChannels} />
+        {this.props.isFetching
+          ? (<div className="progress"></div>)
+          : <Channels channels={this.props.filteredChannels} />
+        }
       </main>
     );
   }
@@ -42,7 +45,8 @@ class Main extends Component {
 
 const mapStateToProps = (state) => ({
   filteredChannels: state.frontend.channels.map(ch => state.channels[ch]),
-  filter: state.frontend.filter
+  filter: state.frontend.filter,
+  isFetching: state.frontend.isFetching
 });
 
 const mapDispatchToProps = (dispatch) => ({

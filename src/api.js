@@ -4,10 +4,11 @@ import $ from 'jquery';
 import { config } from './configs';
 import { create } from './actions';
 
+const DELAY = 1000;
+
 
 export const fetchStreams = (query) => {
   const url = `https://api.twitch.tv/kraken/search/channels?q=${query}&limit=30&client_id=${config.client_id}&callback=?`;
-
   return Promise.resolve(
     $.getJSON(url,
       {
@@ -27,8 +28,8 @@ export const fetchLiveStream = (query) => {
   );
 };
 
-const throttledFetch = throttle(fetchStreams, 700, { trailing: true });
-const throttleFetchStreams = throttle(fetchLiveStream, 700, { trailing: true });
+const throttledFetch = throttle(fetchStreams, DELAY, { trailing: true });
+const throttleFetchStreams = throttle(fetchLiveStream, DELAY, { trailing: true });
 
 export const getChannels = (query) => (dispatch) =>
   throttledFetch(query)
@@ -44,15 +45,16 @@ export const handleSearch = (inputRef, predicate) => (dispatch) => {
     return dispatch(create.resetChannels());
   }
   return Promise.all([
+    dispatch(create.fetchStart()),
     dispatch(getChannels(inputRef.value)),
     dispatch(create.setInput(inputRef.value)),
     throttleFetchStreams(inputRef.value)
-      .then(stream =>
-        dispatch(create.fetchLiveSuccess(stream.streams))
-      )
   ])
-    .then(() => {
-      dispatch(create.filter(predicate));
+    .then(([r1, r2, r3, r4]) => {
+      return Promise.all([
+        dispatch(create.fetchLiveSuccess(r4.streams))
+      ]);
     })
+    .then(() => dispatch(create.filter(predicate)))
     .catch(err => dispatch(create.fetchError(err.message)));
 };

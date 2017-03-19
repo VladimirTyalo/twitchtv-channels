@@ -178,3 +178,25 @@ body {
 .channel-exact-match {
   background-color: #8BE866;
 }
+
+
+@keyframes spin {
+  0% {transform: rotate(0);}
+  100% {transform: rotate(360deg);}
+}
+
+.progress {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border: 10px solid lightcoral;
+  border-radius: 50%;
+  border-top: 10px solid transparent;
+  border-left: 10px solid transparent;
+  
+  margin: 50px auto;
+  animation-name: spin;
+  animation-duration: 0.4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
